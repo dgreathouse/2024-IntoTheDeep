@@ -19,7 +19,7 @@ public class TeleOpMode extends CommandOpMode {
     private DriveSubsystem m_drive;
     @Override
     public void initialize() {
-
+        // Hardware Def
         hw = new Hw(this);
         hw.init();
 
