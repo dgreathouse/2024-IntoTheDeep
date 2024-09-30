@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.gamepad.GamepadEx;
 
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.TargetAngle;
@@ -17,28 +18,27 @@ public class DriveDefaultCommand extends CommandBase {
     // Create local variables of type double to store the stick X,Y,Z values and Angle of robot.
     double m_x, m_y, m_z, m_lx, m_ly, m_hyp;
     PIDController rotPID;
+    GamepadEx gpDriver;
+    GamepadEx gpOperator;
 
-    /** Constructor of class
-     *
-     * @param _opMode The opMode used which will be Driver Controlled or Autonomous
-     * @param _drive The DriveSubsystem instance variable
-     */
-    public DriveDefaultCommand(CommandOpMode _opMode, DriveSubsystem _drive) {
+    public DriveDefaultCommand() {
 
-        m_drive = _drive;    // Set the local "m_drive" variable to the parameter "_drive"
-        m_opMode = _opMode;  // Set the local "opMode" variable to the parameter "_opMode"
+        m_drive = g.ROBOT.Drive;    // Set the local "m_drive" variable to the parameter "_drive"
+        m_opMode = g.ROBOT.OpMode;  // Set the local "opMode" variable to the parameter "_opMode"
+        gpDriver = g.ROBOT.GpDriver;
+        gpOperator = g.ROBOT.GpOperator;
         addRequirements(m_drive);
     }
     @Override
     public void initialize(){
-        rotPID = m_drive.m_rotPID;
+        rotPID = g.DRIVE.ROT_PID;
     }
     @Override
     public void execute(){
         // Read the Stick values
-        m_y = -Hw.gpDriver.getRightY();
-        m_x = Hw.gpDriver.getRightX();
-        m_z = Hw.gpDriver.getLeftX();
+        m_y = -gpDriver.getRightY();
+        m_x = gpDriver.getRightX();
+        m_z = gpDriver.getLeftX();
         // Scale the turning rotation down
         if(Math.abs(m_z) > 0.2) {
             m_z = Math.signum(m_z) * (Math.abs(m_z) - 0.2);
@@ -54,8 +54,8 @@ public class DriveDefaultCommand extends CommandBase {
                 m_drive.driveFieldCentric(m_x,m_y,m_z);
                 break;
             case ANGLE_FIELD_CENTRIC:
-                m_lx = Hw.gpDriver.getLeftX();
-                m_ly = Hw.gpDriver.getLeftY();
+                m_lx = gpDriver.getLeftX();
+                m_ly = gpDriver.getLeftY();
                 m_hyp = Math.hypot(m_lx, m_ly);
                 if(Math.abs(m_hyp) > g.DRIVE.TARGET_ANGLE_DEADBAND){
                     TargetAngle.setTargetAngle(Math.toDegrees(Math.atan2(m_lx,m_ly)));

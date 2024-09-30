@@ -24,19 +24,5 @@ public class Hw {
     public static String ArmExtensionLeftMotor = "el";
     public static String ArmExtensionRightMotor = "er";
 
-    public static GamepadEx gpOperator;
-    public static GamepadEx gpDriver;
-    public static IMU imu;
-    CommandOpMode m_opMode;
-    public Hw(CommandOpMode _opMode) {
-        m_opMode = _opMode;
-    }
-    public void init(){
 
-        gpDriver = new GamepadEx(m_opMode.gamepad1);
-        gpOperator = new GamepadEx(m_opMode.gamepad2);
-
-        imu = m_opMode.hardwareMap.get(BHI260IMU.class,"imu");
-
-    }
 }

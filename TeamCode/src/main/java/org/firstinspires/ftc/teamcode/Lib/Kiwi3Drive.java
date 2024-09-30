@@ -7,7 +7,7 @@ import com.arcrobotics.ftclib.hardware.motors.MotorEx;
 
 
 public class Kiwi3Drive extends RobotDrive {
-    private Hw m_hw;
+
     private CommandOpMode m_opMode;
     MotorEx m_left, m_right, m_back;
     double[] m_speeds = new double[3];
@@ -16,9 +16,9 @@ public class Kiwi3Drive extends RobotDrive {
     private Vector2d m_lVector, m_rVector, m_bVector;
 
 
-    public Kiwi3Drive(CommandOpMode _opMode, Hw _hw) {
-        m_opMode = _opMode;
-        m_hw = _hw;
+    public Kiwi3Drive() {
+        m_opMode = g.ROBOT.OpMode;
+
         m_lVector = new Vector2d(Math.cos(Math.toRadians(30.0)), Math.sin(Math.toRadians(30.0)));
         m_rVector = new Vector2d(Math.cos(Math.toRadians(150.0)), Math.sin(Math.toRadians(150.0)));
         m_bVector = new Vector2d(Math.cos(Math.toRadians(270.0)),  Math.sin(Math.toRadians(270.0)));
@@ -78,6 +78,8 @@ public class Kiwi3Drive extends RobotDrive {
 
     }
     private void driveMotors(Vector2d _vector, double _rotate){
+
+
         m_speeds[0] = _vector.scalarProject(m_lVector);
         m_speeds[1] = _vector.scalarProject(m_rVector);
         m_speeds[2] = _vector.scalarProject(m_bVector);
@@ -95,6 +97,19 @@ public class Kiwi3Drive extends RobotDrive {
         driveFieldCentric(x,y,_rotate);
 
     }
+    public void disableMotors(){
+        setMotorRunMode(Motor.RunMode.RawPower);
+
+        m_left.set(0);
+        m_right.set(0);
+        m_back.set(0);
+    }
+    public void setMotorRunMode(Motor.RunMode _mode){
+        m_left.setRunMode(_mode);
+        m_right.setRunMode(_mode);
+        m_back.setRunMode(_mode);
+    }
+
     @Override
     public void stop() {
 
