@@ -14,15 +14,13 @@ public class Hw {
     public static String DriveBackRight = "br";
     public static String DriveBack = "b"; // For Kiwi 3 Wheel Drive only
 
-    public static String ClawRotateServo = "cr";
-    public static String ClawIntakeServo = "ci";
+    public static String IntakeMotor = "i";
 
     // Expansion hub
-    public static String ShoulderLeftMotor = "sl";
-    public static String ShoulderRightMotor = "sr";
+    public static String ShoulderMotor = "s";
 
-    public static String ArmExtensionLeftMotor = "el";
-    public static String ArmExtensionRightMotor = "er";
+    public static String ArmExtensionLeftMotor = "al";
+    public static String ArmExtensionRightMotor = "ar";
 
 
 }

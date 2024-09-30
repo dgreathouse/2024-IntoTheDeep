@@ -35,8 +35,15 @@ public class DriveSubsystem extends SubsystemBase {
     public void driveFieldCentric(double _strafe, double _forward, double _zRotation){
         m_drive.driveFieldCentric(_strafe, _forward, _zRotation);
     }
-    public void drivePolar(double _driveAngle, double _speed, double _robotHeading){
-        double m_z = -m_rotPID.calculate(g.DRIVE.RobotAngle_deg, _robotHeading);
+
+    /**
+     *
+     * @param _driveAngle The angle the robot should drive
+     * @param _speed The speed to drive (+/- 1)
+     * @param _robotAngle The angle the robot should face while driving
+     */
+    public void drivePolar(double _driveAngle, double _speed, double _robotAngle){
+        double m_z = -m_rotPID.calculate(g.DRIVE.RobotAngle_deg, _robotAngle);
         m_drive.drivePolarAngleFieldCentric(_driveAngle, _speed, m_z);
     }
     public double getRampSpeed(double _speed, double _timeOut, double _currentTime, double _rampUpTime, double _rampDownTime){

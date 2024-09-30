@@ -82,8 +82,34 @@ public class g {
         public static final float DECIMATION_LOW = 2;
         public static final float THRESHOLD_HIGH_DECIMATION_RANGE_METERS = 1.0f;
         public static final int THRESHOLD_NUM_FRAMES_NO_DETECTION_BEFORE_LOW_DECIMATION = 4;
+    }
+    public static final class SHOULDER{
+        public static volatile double angle_deg = 0.0;
 
+        // Constants
+        public static final double ROTATE_P = 0.0;
+        public static final double ROTATE_I = 0.0;
+        public static final double MAX_SPEED = 1.0;
+        public static final double LIMIT_POS_DEG = 10.0;
+        public static final double LIMIT_NEG_DEG = -10.0;
 
+    }
+    public static final class ARM{
+        public static volatile double position_mm = 0.0;
+        // Constants
+        public static final double ROTATE_P = 0.0;
+        public static final double ROTATE_I = 0.0;
+        public static final double MAX_SPEED = 1.0;
+        public static final double EXTEND_LIMIT_MM = 10.0;
+        public static final double RETRACT_LIMIT_MM = 0.0;
+    }
+    public static final class INTAKE{
+        public static volatile double speed = 0.0;
+
+        // Constants
+        public static final double ROTATE_P = 0.0;
+        public static final double ROTATE_I = 0.0;
+        public static final double MAX_SPEED = 1.0;
     }
 
 }
