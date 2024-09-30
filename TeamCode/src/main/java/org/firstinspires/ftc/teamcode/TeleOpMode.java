@@ -5,11 +5,17 @@ import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.Intake.IntakeDefaultCommand;
+import org.firstinspires.ftc.teamcode.Commands.Shoulder.ShoulderDefaultCommand;
 import org.firstinspires.ftc.teamcode.Lib.DriveMode;
 import org.firstinspires.ftc.teamcode.Lib.Hw;
 import org.firstinspires.ftc.teamcode.Lib.g;
+import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.ShoulderSubsystem;
 
 @TeleOp(name="TeleOp 1", group="Linear Opmode")
 public class TeleOpMode extends CommandOpMode {
@@ -21,13 +27,24 @@ public class TeleOpMode extends CommandOpMode {
 
         // Create subsystems
         g.ROBOT.Drive = new DriveSubsystem();
+//        g.ROBOT.Shoulder = new ShoulderSubsystem();
+//        g.ROBOT.Arm = new ArmSubsystem();
+//        g.ROBOT.Intake = new IntakeSubsystem();
+
         DriveSubsystem m_drive = g.ROBOT.Drive;
         
         // Create Default Commands
         DriveDefaultCommand driveDefaultCommand = new DriveDefaultCommand();
+//        ShoulderDefaultCommand shoulderDefaultCommand = new ShoulderDefaultCommand();
+//        ArmDefaultCommand armDefaultCommand = new ArmDefaultCommand();
+//        IntakeDefaultCommand intakeDefaultCommand = new IntakeDefaultCommand();
 
         // Set Default Commands
         m_drive.setDefaultCommand(driveDefaultCommand);
+//        g.ROBOT.Shoulder.setDefaultCommand(shoulderDefaultCommand);
+//        g.ROBOT.Arm.setDefaultCommand(armDefaultCommand);
+//        g.ROBOT.Intake.setDefaultCommand(intakeDefaultCommand);
+
 
         //          PS4(XBOX)
         //---------------------------------

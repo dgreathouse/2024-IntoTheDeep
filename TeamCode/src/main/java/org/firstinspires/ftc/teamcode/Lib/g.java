@@ -9,13 +9,19 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.hardware.bosch.BHI260IMU;
 import com.qualcomm.robotcore.hardware.IMU;
 
+import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.IntakeSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.ShoulderSubsystem;
 
 public class g {
 
     public static class ROBOT{
         public static CommandOpMode OpMode;
         public static DriveSubsystem Drive;
+        public static ShoulderSubsystem Shoulder;
+        public static ArmSubsystem Arm;
+        public static IntakeSubsystem Intake;
 
         public static GamepadEx GpDriver;
         public static GamepadEx GpOperator;
