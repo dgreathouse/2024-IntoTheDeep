@@ -7,7 +7,10 @@ import org.firstinspires.ftc.teamcode.Lib.g;
 
 @Autonomous(name = "Net Zone 4 Hi Basket", group = "Net Zone")
 public class Net4SampleHiOpMode extends AutoCommandOpMode{
-    public Net4SampleHiOpMode() {
+
+    public void initialize(){
+        super.initialize();
         g.ROBOT.AutoCommands = new Net4SampleHi_commands();
     }
+
 }
