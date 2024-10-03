@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
 
@@ -30,13 +31,14 @@ public class AutoRotateRobot extends CommandBase {
         rotPID.reset();
         rotPID.setTolerance(0.5);
         m_timer = new Timing.Timer((long)(m_timeOut_sec*1000.0), TimeUnit.MILLISECONDS);
+        m_drive.setMotorRunMode(Motor.RunMode.RawPower);
         m_timer.start();
     }
     @Override
     public void execute(){
         double rot = -rotPID.calculate(g.DRIVE.RobotAngle_deg, m_angle);
         rot = MathUtils.clamp(rot,-m_speed,m_speed);
-        m_drive.driveFieldCentric(0, 0, rot);
+        m_drive.driveRobotCentric(0, 0, rot);
     }
     @Override
     public boolean isFinished(){

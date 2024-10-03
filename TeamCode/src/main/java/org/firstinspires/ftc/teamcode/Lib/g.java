@@ -7,7 +7,9 @@ import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.geometry.Rotation2d;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.hardware.bosch.BHI260IMU;
+//import com.qualcomm.hardware.kauailabs.NavxMicroNavigationSensor;
 import com.qualcomm.robotcore.hardware.IMU;
+//import com.qualcomm.robotcore.hardware.IntegratingGyroscope;
 
 import org.firstinspires.ftc.teamcode.Subsystems.ArmSubsystem;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
@@ -17,6 +19,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.ShoulderSubsystem;
 public class g {
 
     public static class ROBOT{
+
         public static CommandOpMode OpMode;
         public static DriveSubsystem Drive;
         public static ShoulderSubsystem Shoulder;
@@ -25,14 +28,20 @@ public class g {
 
         public static GamepadEx GpDriver;
         public static GamepadEx GpOperator;
+//        public static NavxMicroNavigationSensor NavXMicro;
+//        public static IntegratingGyroscope Gyro;
         public static IMU ControlHubImu;
         public static SequentialCommandGroup AutoCommands;
-        public static void init(CommandOpMode _opMode){
+
+        public static void init(CommandOpMode _opMode) {
             OpMode = _opMode;
             GpDriver = new GamepadEx(OpMode.gamepad1);
             GpOperator = new GamepadEx(OpMode.gamepad2);
-            ControlHubImu = OpMode.hardwareMap.get(BHI260IMU.class,"imu");
+            ControlHubImu = OpMode.hardwareMap.get(BHI260IMU.class, "imu");
+            //NavXMicro = OpMode.hardwareMap.get(NavxMicroNavigationSensor.class, "navx");
+           // Gyro = (IntegratingGyroscope) NavXMicro;
         }
+
 
     }
     public static class DRIVE {
@@ -49,15 +58,16 @@ public class g {
         public static final double INCH_PER_COUNT = WHEEL_CIRCUMFERENCE_IN / CPR;
         public static final double ACHIEVABLE_MAX_TICKS_PER_SECOND = 2781.1;
 
-        public static final double MOTOR_VEL_P = 1.0;
+        public static final double MOTOR_VEL_P = 0.050;
         public static final double MOTOR_VEL_I = 0.0;
 
-        public static final double ROTATE_P = 1.0;
-        public static final double ROTATE_I = 0.0;
+        public static final double ROTATE_P = 0.0075;
+        public static final double ROTATE_I = 0.001;
         public static final double ROTATE_FIELD_CENTRIC_SCALE = 0.4;
         public static final double TARGET_ANGLE_DEADBAND = 0.8;
 
         public static final PIDController ROT_PID = new PIDController(ROTATE_P, ROTATE_I, 0.0);
+        public static final double ROTATE_MAX_SPEED = 0.25;
 
 
     }

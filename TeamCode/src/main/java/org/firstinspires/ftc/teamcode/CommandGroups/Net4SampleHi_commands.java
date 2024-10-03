@@ -10,17 +10,19 @@ import org.firstinspires.ftc.teamcode.Lib.g;
 import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
 
 public class Net4SampleHi_commands extends SequentialCommandGroup {
-
+    /* Start on NET side, Score pre installed sample in high basket, then get the other
+       3 samples and score in hi basket, park by touching the low ascent bar.
+    * */
     public Net4SampleHi_commands(){
         addCommands(
-                /* Drive to Basket*/                    new AutoDriveTimeVel(0, 0.7, 0, 1),
+                /* Drive to Basket*/                    //new AutoDriveTimeVel(0, 0.7, 0, 1),
 
                 // Rotate Arm to angle for basket
                 // Extend Claw
                 // Spin Claw to deposit sample
                 // Stop spinning Claw
                 // Retract Claw
-                /* Rotate Robot to Sample 1 */          new AutoRotateRobot(5,.5, 2),
+                /* Rotate Robot to Sample 1 */         // new AutoRotateRobot(5,.5, 2),
                 // Rotate Arm to floor
                 // Extend Arm
                 // Spin Claw to intake the sample
@@ -70,8 +72,10 @@ public class Net4SampleHi_commands extends SequentialCommandGroup {
                 // Retract Claw
                 // Drive to Observation zone to park
 
-                new AutoDriveTimeVel(0, 0.7, 0, 1),
-                new AutoDriveTimeVel(180, 0.7, 0, 1),
+                new AutoDriveTimeVel(45, 0.5, 45, 1),
+                new AutoRotateRobot(0, 0.5, 2),
+                //new AutoDriveTimeVel(0, 0.5, 45, 1),
+                //new AutoDriveTimeVel(180, 0.7, 0, 1),
                 new InstantCommand(g.ROBOT.OpMode::requestOpModeStop)
         );
     }

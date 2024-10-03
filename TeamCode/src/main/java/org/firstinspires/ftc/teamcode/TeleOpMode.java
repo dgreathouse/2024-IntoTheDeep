@@ -3,8 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.command.InstantCommand;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.CommandGroups.Net4SampleHi_commands;
 import org.firstinspires.ftc.teamcode.Commands.Arm.ArmDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Drive.DriveDefaultCommand;
 import org.firstinspires.ftc.teamcode.Commands.Intake.IntakeDefaultCommand;
@@ -32,6 +34,7 @@ public class TeleOpMode extends CommandOpMode {
 //        g.ROBOT.Intake = new IntakeSubsystem();
 
         DriveSubsystem m_drive = g.ROBOT.Drive;
+        m_drive.setMotorRunMode(Motor.RunMode.RawPower);
         
         // Create Default Commands
         DriveDefaultCommand driveDefaultCommand = new DriveDefaultCommand();

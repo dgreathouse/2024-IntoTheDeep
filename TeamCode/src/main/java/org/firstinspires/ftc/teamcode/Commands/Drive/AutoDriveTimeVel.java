@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.Commands.Drive;
 import com.arcrobotics.ftclib.command.CommandBase;
 import com.arcrobotics.ftclib.command.CommandOpMode;
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.geometry.Rotation2d;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.util.MathUtils;
 import com.arcrobotics.ftclib.util.Timing;
@@ -29,11 +30,11 @@ public class AutoDriveTimeVel extends CommandBase {
     double m_speed;
     double m_currentSpeed;
 
-    double m_rotSpeed = 0.3;
+    double m_rotSpeed = g.DRIVE.ROTATE_MAX_SPEED;
     double m_rampUpTime_sec = 1.0; //Seconds
     double m_rampDownTime_sec = 0;
 
-    PIDController rotPID = new PIDController(0.005, 0.001, 0);
+    PIDController rotPID = new PIDController(0.05, 0.051, 0);
     Timing.Timer m_timer;
 
     /**
@@ -71,6 +72,7 @@ public class AutoDriveTimeVel extends CommandBase {
         m_driveAngle = _driveAngle;
         m_speed = _speed;
         m_robotAngle = _robotAngle;
+        g.DRIVE.RobotTargetAngle_deg = new Rotation2d(_robotAngle);
         m_timeOut_sec = _timeOut_sec;
         if (m_timeOut_sec >= 2.0) {
             m_rampUpTime_sec = 0.75;
@@ -95,13 +97,13 @@ public class AutoDriveTimeVel extends CommandBase {
 
     @Override
     public void execute() {
-        double rot = -rotPID.calculate(g.DRIVE.RobotAngle_deg, m_robotAngle);
+     //   double rot = -rotPID.calculate(g.DRIVE.RobotAngle_deg, m_robotAngle);
         double currentTime_sec = m_timer.elapsedTime() / 1000.0;
         m_currentSpeed = m_drive.getRampSpeed(m_speed, m_timeOut_sec, currentTime_sec,m_rampUpTime_sec,m_rampDownTime_sec);
 
 
-        rot = MathUtils.clamp(rot, -m_rotSpeed, m_rotSpeed);
-        m_drive.drivePolar(m_driveAngle, m_currentSpeed, rot);
+     //   rot = MathUtils.clamp(rot, -m_rotSpeed, m_rotSpeed);
+        m_drive.drivePolar(m_driveAngle, m_currentSpeed,g.DRIVE.RobotTargetAngle_deg.getDegrees());
         m_opMode.telemetry.addData("CurrentSpeed", m_currentSpeed);
     }
 

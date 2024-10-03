@@ -6,6 +6,9 @@ import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.Lib.DriveMode;
 import org.firstinspires.ftc.teamcode.Lib.Kiwi3Drive;
 import org.firstinspires.ftc.teamcode.Lib.TargetAngle;
@@ -62,6 +65,10 @@ public class DriveSubsystem extends SubsystemBase {
     }
     private void setRobotAngle(){
         g.DRIVE.RobotAngle_deg = g.ROBOT.ControlHubImu.getRobotYawPitchRollAngles().getYaw(AngleUnit.DEGREES);    // TODO: Change to your orientation the ControlHub is mounted at to get the Robot Yaw
+        ///Orientation angles = g.ROBOT.NavXMicro.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+       // g.DRIVE.RobotAngle_deg = angles.firstAngle;
+
+
     }
     public void setRobotDesiredAngle(double _ang_deg){
         TargetAngle.setTargetAngle(_ang_deg);

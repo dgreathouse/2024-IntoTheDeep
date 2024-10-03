@@ -58,7 +58,8 @@ public class DriveDefaultCommand extends CommandBase {
                 m_ly = gpDriver.getLeftY();
                 m_hyp = Math.hypot(m_lx, m_ly);
                 if(Math.abs(m_hyp) > g.DRIVE.TARGET_ANGLE_DEADBAND){
-                    TargetAngle.setTargetAngle(Math.toDegrees(Math.atan2(m_lx,m_ly)));
+                    //TargetAngle.setTargetAngle(Math.toDegrees(Math.atan2(m_lx,m_ly)));
+                    TargetAngle.setTargetAngle(m_lx,m_ly);
                 }
                 m_z = -rotPID.calculate(g.DRIVE.RobotAngle_deg, g.DRIVE.RobotTargetAngle_deg.getDegrees());
                 m_drive.driveFieldCentric(m_x,m_y,m_z);
